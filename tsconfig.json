@@ -27,6 +27,9 @@
       "@app/*": ["./src/app/*"],
       "@public/*": ["./public/*"],
       "@lib/*": ["./src/lib/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@interfaces/*": ["./src/interfaces/*"],
       "@providers/*": ["./src/app/_shared/providers/*"],
       "@stores/*": ["./src/stores/*"],
       "@components/*": ["./src/components/*"]
