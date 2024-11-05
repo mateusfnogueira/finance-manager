@@ -3,20 +3,20 @@ import Image from 'next/image'
 
 export default function LoginPage() {
   return (
-    <div className="flex items-center justify-end h-full gap-4">
-      <div className="font-[family-name:var(--font-geist-sans)] text-white w-full flex justify-center flex-col px-12">
-        <div className="title flex items-center gap-2 justify-items-left ">
+    <div className="flex h-full w-screen items-center justify-end gap-4">
+      <div className="flex w-full flex-col justify-center px-12 font-[family-name:var(--font-geist-sans)] text-white">
+        <div className="title justify-items-left flex items-center gap-2">
           <Logo />
           <h1 className="text-2xl font-bold">finance.ai</h1>
         </div>
         <div className="content w-full">
-          <h2 className="text-4xl font-bold mt-8">Bem vindo!</h2>
-          <p className="text-base mt-3 pr-5">
+          <h2 className="mt-8 text-4xl font-bold">Bem vindo!</h2>
+          <p className="mt-3 pr-5 text-base">
             A Finance AI é uma plataforma de gestão financeira que utiliza IA para monitorar suas
             movimentações, e oferecer insights personalizados, facilitando o controle do seu
             orçamento.
           </p>
-          <button className="mt-8 w-full bg-slate-500 border-white border-solid border-2 rounded">
+          <button className="mt-8 w-full rounded border-2 border-solid border-white bg-slate-500">
             Entrar com Google
           </button>
         </div>
