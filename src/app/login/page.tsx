@@ -1,5 +1,7 @@
 import Image from 'next/image'
 import Logo from '@public/icons/logo-main.svg'
+import { Button } from '@/components/ui/button'
+import { LogInIcon } from 'lucide-react'
 
 export default function LoginPage() {
   return (
@@ -15,12 +17,12 @@ export default function LoginPage() {
           movimentações, e oferecer insights personalizados, facilitando o controle do seu
           orçamento.
         </p>
-        {/* <SignInButton>
-          <Button variant="outline">
-            <LogInIcon className="mr-2" />
-            Fazer login ou criar conta
-          </Button>
-        </SignInButton> */}
+        {/* <SignInButton> */}
+        <Button variant="outline">
+          <LogInIcon className="mr-2" />
+          Fazer login ou criar conta
+        </Button>
+        {/* </SignInButton> */}
       </div>
       <div className="relative h-full w-full">
         <Image src="/images/bg-login.png" alt="Faça login" fill className="object-cover" />
