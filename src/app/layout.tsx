@@ -1,7 +1,5 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
-import { ClerkProvider } from '@clerk/nextjs'
-import { dark } from '@clerk/themes'
 import './globals.css'
 
 const geistSans = localFont({
