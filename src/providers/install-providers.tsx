@@ -1,29 +1,31 @@
 'use client'
-import { ClerkProvider } from '@clerk/nextjs'
-import { dark } from '@clerk/themes'
 import { AbstractIntlMessages, NextIntlClientProvider } from 'next-intl'
+import { SessionProvider } from 'next-auth/react'
 
 interface Props {
   children: React.ReactNode
   locale: string
   messages: AbstractIntlMessages
   timeZone?: string
+  session: any
 }
 
-export const InstallProviders: React.FC<Props> = ({ children, locale, messages, timeZone }) => {
+export const InstallProviders: React.FC<Props> = ({
+  children,
+  locale,
+  messages,
+  timeZone,
+  session
+}) => {
   return (
-    <NextIntlClientProvider
-      locale={locale}
-      messages={messages}
-      timeZone={timeZone ?? 'America/Sao_Paulo'}
-    >
-      <ClerkProvider
-        appearance={{
-          baseTheme: dark
-        }}
-      >
-        {children}
-      </ClerkProvider>
-    </NextIntlClientProvider>
+    <SessionProvider session={session}>
+      {/* <NextIntlClientProvider
+        locale={locale}
+        messages={messages}
+        timeZone={timeZone ?? 'America/Sao_Paulo'}
+      > */}
+      {children}
+      {/* </NextIntlClientProvider> */}
+    </SessionProvider>
   )
 }

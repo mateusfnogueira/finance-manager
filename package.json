@@ -10,9 +10,8 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@clerk/nextjs": "^5.7.5",
-    "@clerk/themes": "2.1.37",
-    "@prisma/client": "^5.21.1",
+    "@auth/prisma-adapter": "^2.7.3",
+    "@prisma/client": "^5.22.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@svgr/webpack": "^8.1.0",
     "autoprefixer": "^10.4.20",
@@ -20,8 +19,8 @@
     "clsx": "^2.1.1",
     "lucide-react": "^0.454.0",
     "next": "14.2.14",
+    "next-auth": "^4.24.10",
     "next-intl": "^3.24.0",
-    "prisma": "^5.21.1",
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.5.4",
@@ -39,6 +38,7 @@
     "postcss": "^8.4.47",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.8",
+    "prisma": "^5.22.0",
     "tailwindcss": "^3.4.14",
     "typescript": "^5"
   }
