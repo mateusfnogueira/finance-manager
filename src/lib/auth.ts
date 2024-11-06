@@ -12,6 +12,14 @@ export const authOptions: AuthOptions = {
     })
   ],
   secret: process.env.NEXTAUTH_SECRET,
+  callbacks: {
+    async session({ session, user }) {
+      if (session && session.user) {
+        session.user.id = user.id
+      }
+      return session
+    }
+  },
   pages: {
     signIn: '/login',
     error: '/'
