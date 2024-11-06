@@ -1,27 +1,30 @@
-import Logo from '@public/icons/logo-main.svg'
 import Image from 'next/image'
+import Logo from '@public/icons/logo-main.svg'
 
 export default function LoginPage() {
   return (
-    <div className="flex h-full w-screen items-center justify-end gap-4">
-      <div className="flex w-full flex-col justify-center px-12 font-[family-name:var(--font-geist-sans)] text-white">
-        <div className="title justify-items-left flex items-center gap-2">
+    <div className="grid h-full grid-cols-2">
+      <div className="mx-auto flex h-full max-w-[550px] flex-col justify-center p-8">
+        <div className="flex items-center gap-0.5">
           <Logo />
-          <h1 className="text-2xl font-bold">finance.ai</h1>
+          <p className="text-2xl font-bold">finance.ai</p>
         </div>
-        <div className="content w-full">
-          <h2 className="mt-8 text-4xl font-bold">Bem vindo!</h2>
-          <p className="mt-3 pr-5 text-base">
-            A Finance AI é uma plataforma de gestão financeira que utiliza IA para monitorar suas
-            movimentações, e oferecer insights personalizados, facilitando o controle do seu
-            orçamento.
-          </p>
-          <button className="mt-8 w-full rounded border-2 border-solid border-white bg-slate-500">
-            Entrar com Google
-          </button>
-        </div>
+        <h1 className="mb-3 text-4xl font-bold">Bem-vindo</h1>
+        <p className="mb-8 text-muted-foreground">
+          A Finance AI é uma plataforma de gestão financeira que utiliza IA para monitorar suas
+          movimentações, e oferecer insights personalizados, facilitando o controle do seu
+          orçamento.
+        </p>
+        {/* <SignInButton>
+          <Button variant="outline">
+            <LogInIcon className="mr-2" />
+            Fazer login ou criar conta
+          </Button>
+        </SignInButton> */}
       </div>
-      <Image src="/images/bg-login.png" alt="Login" width={600} height={600} objectFit="cover" />
+      <div className="relative h-full w-full">
+        <Image src="/images/bg-login.png" alt="Faça login" fill className="object-cover" />
+      </div>
     </div>
   )
 }
