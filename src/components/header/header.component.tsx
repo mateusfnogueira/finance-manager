@@ -1,5 +1,8 @@
 'use client'
-import Logo from '@public/icons/logo-main.svg'
+import Image from 'next/image'
+import { signOut, useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,19 +11,17 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
-import { signOut, useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import Logo from '@public/icons/logo-main.svg'
 
 export function Header() {
-  const session = useSession()
+  const { data: session } = useSession()
   const router = useRouter()
 
   useEffect(() => {
-    if (!session.data) {
+    if (!session) {
       router.push('/login')
     }
-  }, [session.data, router])
+  }, [session, router])
 
   return (
     <header className="flex items-center justify-between bg-primary-foreground px-8 py-4">
@@ -28,15 +29,17 @@ export function Header() {
         <Logo />
         <h1 className="text-xl font-bold">finance.ai</h1>
       </div>
-      {session.data ? (
+      {session ? (
         <DropdownMenu>
           <DropdownMenuTrigger className="flex items-center gap-2 border-none">
-            <img
-              src={session.data?.user?.image as string}
+            <Image
+              src={session.user?.image as string}
               alt="Avatar"
               className="h-8 w-8 rounded-full"
+              width={32}
+              height={32}
             />
-            <span>Usuário</span>
+            <span>{session.user.name}</span>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuItem onSelect={() => {}}>

@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
 import { Mulish } from 'next/font/google'
-import { getServerSession } from 'next-auth'
 import { InstallProviders } from '@/providers/install-providers'
 import { authOptions } from '@/lib/auth'
 import './globals.css'
 import { Header } from '@/components/header/header.component'
+import { getServerSession } from 'next-auth/next'
 
 const mulish = Mulish({
   subsets: ['latin-ext']
@@ -21,7 +21,6 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   const session = await getServerSession(authOptions)
-
   return (
     <html lang="en">
       <body className={`${mulish.className} dark antialiased`}>

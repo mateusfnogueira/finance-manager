@@ -1,13 +1,14 @@
 'use client'
 import { AbstractIntlMessages, NextIntlClientProvider } from 'next-intl'
 import { SessionProvider } from 'next-auth/react'
+import { Session } from 'next-auth'
 
 interface Props {
   children: React.ReactNode
   locale: string
   messages: AbstractIntlMessages
   timeZone?: string
-  session: any
+  session: Session | null
 }
 
 export const InstallProviders: React.FC<Props> = ({
