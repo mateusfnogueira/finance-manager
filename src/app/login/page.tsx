@@ -5,16 +5,18 @@ import { Button } from '@/components/ui/button'
 import { LogInIcon } from 'lucide-react'
 import { signIn, useSession } from 'next-auth/react'
 import { useEffect } from 'react'
-import router from 'next/router'
+import { useRouter } from 'next/navigation'
 
 export default function LoginPage() {
   const { data: session } = useSession()
+
+  const router = useRouter()
 
   useEffect(() => {
     if (session) {
       router.push('/')
     }
-  }, [session])
+  }, [session, router])
 
   function handleLogin() {
     signIn('google', { callbackUrl: 'http://localhost:3000/' })
