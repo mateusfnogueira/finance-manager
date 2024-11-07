@@ -1,21 +1,13 @@
 import type { Metadata } from 'next'
-import localFont from 'next/font/local'
+import { Mulish } from 'next/font/google'
 import { getServerSession } from 'next-auth'
 import { InstallProviders } from '@/providers/install-providers'
 import { authOptions } from '@/lib/auth'
 import './globals.css'
 import { Header } from '@/components/header/header.component'
-import { Suspense } from 'react'
 
-const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900'
-})
-const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900'
+const mulish = Mulish({
+  subsets: ['latin-ext']
 })
 
 export const metadata: Metadata = {
@@ -32,7 +24,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} dark antialiased`}>
+      <body className={`${mulish.className} dark antialiased`}>
         <InstallProviders locale="en" messages={{}} session={session}>
           <Header />
           {children}
