@@ -17,7 +17,6 @@ export default function LoginPage() {
   }, [session])
 
   function handleLogin() {
-    console.log('login')
     signIn('google', { callbackUrl: 'http://localhost:3000/' })
   }
 
