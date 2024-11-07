@@ -105,7 +105,7 @@ enum TransactionCategory {
   FOOD
   ENTERTAINMENT
   HEALTH
-  UTILITIY
+  UTILITY
   SALARY
   EDUCATION
   OTHER
@@ -119,6 +119,6 @@ enum TransactionPaymentMethod {
   CASH
   PIX
   PAYPAL
-  BITCOIN
+  CRYPTO
   OTHER
 }
