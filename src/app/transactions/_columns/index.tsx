@@ -8,6 +8,8 @@ import {
   TRANSACTION_CATEGORY_LABELS,
   TRANSACTION_PAYMENT_METHOD_LABELS
 } from '@constants/transactions.constants'
+import TransactionTypeBadge from '../_components/transaction-type-badge.component'
+import EditTransactionButton from '../_components/edit-transaction-button.component'
 
 export const transactionColumns: ColumnDef<Transaction>[] = [
   {
@@ -17,8 +19,7 @@ export const transactionColumns: ColumnDef<Transaction>[] = [
   {
     accessorKey: 'type',
     header: 'Tipo',
-    cell: ({ row: { original: transaction } }) =>
-      transaction.type === 'INCOME' ? 'Receita' : 'Despesa'
+    cell: ({ row: { original: transaction } }) => <TransactionTypeBadge transaction={transaction} />
   },
   {
     accessorKey: 'category',
@@ -56,6 +57,7 @@ export const transactionColumns: ColumnDef<Transaction>[] = [
     cell: ({ row: { original: transaction } }) => {
       return (
         <div className="space-x-1">
+          <EditTransactionButton transaction={transaction} />
           <Button variant="ghost" size="icon" className="text-muted-foreground">
             <TrashIcon />
           </Button>
