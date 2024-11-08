@@ -1,8 +1,6 @@
 'use client'
 import Image from 'next/image'
 import { signOut, useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,13 +13,6 @@ import Logo from '@public/icons/logo-main.svg'
 
 export function Header() {
   const { data: session } = useSession()
-  const router = useRouter()
-
-  useEffect(() => {
-    if (!session) {
-      router.push('/login')
-    }
-  }, [session, router])
 
   return (
     <header className="flex items-center justify-between bg-primary-foreground px-8 py-4">
