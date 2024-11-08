@@ -18,13 +18,17 @@ export default async function TransactionsPage() {
       userId: user.id
     }
   })
+  const plainTransactions = transactions.map((transaction) => ({
+    ...transaction,
+    amount: transaction.amount.toNumber()
+  }))
   return (
     <div className="space-y-6 p-6">
       <div className="flex w-full items-center justify-between">
         <h1 className="text-2xl font-bold">Transações</h1>
         <AddTransactionButton />
       </div>
-      <DataTable columns={transactionColumns} data={transactions} />
+      <DataTable columns={transactionColumns} data={plainTransactions} />
     </div>
   )
 }

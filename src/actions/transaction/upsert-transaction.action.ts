@@ -26,8 +26,12 @@ export const upsertTransaction = async (params: UpsertTransactionParams) => {
     throw new Error('Unauthorized')
   }
   const userId = session.user.id
-  await db.transaction.create({
-    data: { ...params, userId }
+  await db.transaction.upsert({
+    update: { ...params, userId },
+    create: { ...params, userId },
+    where: {
+      id: params?.id ?? ''
+    }
   })
   revalidatePath('/transactions')
 }

@@ -1,13 +1,15 @@
-export interface ITrasaction {
-  id: number
-  userId: number
+import { TransactionCategory, TransactionPaymentMethod, TransactionType } from '@prisma/client'
+
+export interface ITransaction {
+  id: string
+  userId: string
   title: string
   description: string
   amount: number
-  type: 'income' | 'outcome' | 'transfer' | 'investment'
-  paymentMethod: string
+  type: TransactionType
+  category: TransactionCategory
+  paymentMethod: TransactionPaymentMethod
   date: Date
-  category: string
   createdAt: Date
   updatedAt: Date
 }
