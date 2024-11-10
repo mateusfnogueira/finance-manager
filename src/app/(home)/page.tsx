@@ -2,9 +2,9 @@ import { authOptions } from '@/lib/auth'
 import { isMatch } from 'date-fns'
 import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
-import { TimeSelect } from './_components/time-select.component'
-import { LastTransactions } from './_components/last-transactions.component'
+
 import { getDashboard } from '@/actions/dashboard/get-dashboard.action'
+import { LastTransactions, TimeSelect, SummaryCards } from './_components'
 
 interface HomePageProps {
   searchParams: {
@@ -33,7 +33,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
       </div>
       <div className="grid h-full grid-cols-[2fr,1fr] gap-6 overflow-hidden">
         <div className="flex flex-col gap-6 overflow-hidden">
-          {/* Sumary Cards */}
+          <SummaryCards month={month} {...dashboard} />
           <div className="grid-col-3 grid h-full grid-rows-1 gap-6 overflow-hidden"></div>
         </div>
         <LastTransactions />

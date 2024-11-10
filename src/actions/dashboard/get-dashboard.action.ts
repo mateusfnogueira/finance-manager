@@ -18,6 +18,8 @@ export const getDashboard = async (month: string) => {
     }
   }
 
+  console.log(session.user.id)
+
   const allIncomes = Number(
     (
       await db.transaction.aggregate({
@@ -29,7 +31,7 @@ export const getDashboard = async (month: string) => {
           amount: true
         }
       })
-    )._sum.amount || 0
+    )._sum?.amount || 0
   )
 
   const allInvestments = Number(
@@ -43,7 +45,7 @@ export const getDashboard = async (month: string) => {
           amount: true
         }
       })
-    )._sum.amount || 0
+    )._sum?.amount || 0
   )
 
   const allOutcomes = Number(
@@ -57,10 +59,10 @@ export const getDashboard = async (month: string) => {
           amount: true
         }
       })
-    )._sum.amount || 0
+    )._sum?.amount || 0
   )
 
-  const allTransfer = Number(
+  const allTransfers = Number(
     (
       await db.transaction.aggregate({
         where: {
@@ -71,7 +73,7 @@ export const getDashboard = async (month: string) => {
           amount: true
         }
       })
-    )._sum.amount || 0
+    )._sum?.amount || 0
   )
 
   const totalTransactions = Number(
@@ -82,7 +84,7 @@ export const getDashboard = async (month: string) => {
           amount: true
         }
       })
-    )._sum.amount || 0
+    )._sum?.amount || 0
   )
 
   const totalExpensesPerCategory: TotalExpensePerCategory[] = (
@@ -110,19 +112,20 @@ export const getDashboard = async (month: string) => {
     take: 15
   })
 
-  const balance = allIncomes - allOutcomes - allInvestments
+  const balance = allIncomes - allOutcomes - allInvestments - allTransfers
 
   const typePercentage: TransactionPercentagePerType = {
     [TransactionType.INCOME]: allIncomes || totalTransactions * 100,
     [TransactionType.INVESTMENT]: allInvestments || totalTransactions * 100,
     [TransactionType.OUTCOME]: allOutcomes || totalTransactions * 100,
-    [TransactionType.TRANSFER]: allTransfer || totalTransactions * 100
+    [TransactionType.TRANSFER]: allTransfers || totalTransactions * 100
   }
 
   return {
     allIncomes,
     allInvestments,
     allOutcomes,
+    allTransfers,
     balance,
     totalTransactions,
     lastTransaction,
