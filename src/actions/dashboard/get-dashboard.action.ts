@@ -13,12 +13,10 @@ export const getDashboard = async (month: string) => {
   const where = {
     userId: session.user.id,
     date: {
-      gte: new Date(month),
-      lt: new Date(month)
+      gte: new Date(`2024-${month}-01`),
+      lt: new Date(`2024-${month}-31`)
     }
   }
-
-  console.log(session.user.id)
 
   const allIncomes = Number(
     (
