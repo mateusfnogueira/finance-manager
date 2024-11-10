@@ -4,6 +4,7 @@ import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
 import { TimeSelect } from './_components/time-select.component'
 import { LastTransactions } from './_components/last-transactions.component'
+import { getDashboard } from '@/actions/dashboard/get-dashboard.action'
 
 interface HomePageProps {
   searchParams: {
@@ -11,9 +12,9 @@ interface HomePageProps {
   }
 }
 
-export default function HomePage({ searchParams }: HomePageProps) {
+export default async function HomePage({ searchParams }: HomePageProps) {
   const { month } = searchParams
-  const session = getServerSession(authOptions)
+  const session = await getServerSession(authOptions)
   if (!session) {
     redirect('login')
   }
@@ -21,6 +22,8 @@ export default function HomePage({ searchParams }: HomePageProps) {
   if (monthIsInvalid) {
     redirect(`?month=${new Date().getMonth() + 1}`)
   }
+
+  const dashboard = await getDashboard(month)
 
   return (
     <div className="flex h-full flex-col space-y-6 overflow-hidden p-6">
