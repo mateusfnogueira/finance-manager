@@ -3,6 +3,7 @@ import { db } from '@/lib/prisma'
 import { getServerSession } from 'next-auth'
 import { TotalExpensePerCategory, TransactionPercentagePerType } from './types'
 import { TransactionType } from '@prisma/client'
+import { ITransaction } from '../../interfaces/transactions.interface'
 
 export const getDashboard = async (month: string) => {
   const session = await getServerSession(authOptions)
@@ -102,13 +103,33 @@ export const getDashboard = async (month: string) => {
     percentageOfTotal: (Number(category._sum.amount) / allOutcomes) * 100
   }))
 
-  const lastTransaction = await db.transaction.findMany({
-    where,
-    orderBy: {
-      date: 'desc'
-    },
-    take: 15
-  })
+  const lastTransaction = await db.transaction
+    .findMany({
+      where,
+      orderBy: {
+        date: 'desc'
+      },
+      take: 15
+    })
+    .then((transactions) => {
+      const transactionsFormated: ITransaction[] = []
+      transactions.map((transaction) => {
+        transactionsFormated.push({
+          id: transaction.id,
+          userId: transaction.userId,
+          title: transaction.title,
+          description: transaction.description,
+          amount: Number(transaction.amount),
+          type: transaction.type,
+          paymentMethod: transaction.paymentMethod,
+          date: transaction.date,
+          category: transaction.category,
+          createdAt: transaction.createdAt,
+          updatedAt: transaction.updatedAt
+        })
+      })
+      return transactionsFormated
+    })
 
   const balance = allIncomes - allOutcomes - allInvestments - allTransfers
 
