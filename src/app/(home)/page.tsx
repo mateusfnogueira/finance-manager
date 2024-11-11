@@ -4,7 +4,13 @@ import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
 
 import { getDashboard } from '@/actions/dashboard/get-dashboard.action'
-import { LastTransactions, TimeSelect, SummaryCards, TransactionsPieChart } from './_components'
+import {
+  LastTransactions,
+  TimeSelect,
+  SummaryCards,
+  TransactionsPieChart,
+  ExpensesPerCategory
+} from './_components'
 
 interface HomePageProps {
   searchParams: {
@@ -36,6 +42,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
           <SummaryCards month={month} {...dashboard} />
           <div className="grid-col-3 grid h-full grid-rows-1 gap-6 overflow-hidden">
             <TransactionsPieChart {...dashboard} />
+            <ExpensesPerCategory expensesPerCategory={dashboard.totalExpensesPerCategory} />
           </div>
         </div>
         <LastTransactions />
