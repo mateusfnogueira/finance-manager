@@ -45,7 +45,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
             <ExpensesPerCategory expensesPerCategory={dashboard.totalExpensesPerCategory} />
           </div>
         </div>
-        <LastTransactions />
+        <LastTransactions lastTransactions={dashboard.lastTransaction} />
       </div>
     </div>
   )
