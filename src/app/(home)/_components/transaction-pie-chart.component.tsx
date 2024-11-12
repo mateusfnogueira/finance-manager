@@ -51,28 +51,28 @@ export function TransactionsPieChart({
     {
       type: TransactionType.INCOME,
       amount: allIncomes,
-      color: '#55B02E'
+      fill: '#55B02E'
     },
     {
       type: TransactionType.OUTCOME,
       amount: allOutcomes,
-      color: '#E93030'
+      fill: '#E93030'
     },
     {
       type: TransactionType.INVESTMENT,
       amount: allInvestments,
-      color: '#FFFFFF'
+      fill: '#FFFFFF'
     },
     {
       type: TransactionType.TRANSFER,
       amount: allTransfers,
-      color: '#b325b3'
+      fill: '#b325b3'
     }
   ]
   return (
-    <Card className="flex flex-col p-6">
-      <CardContent className="flex-1 pb-0">
-        <ChartContainer config={chartConfig} className="mx-auto aspect-square max-h-[250px]">
+    <Card className="flex p-4">
+      <CardContent className="flex w-max min-w-[350px] pb-0">
+        <ChartContainer config={chartConfig} className="mx-auto aspect-square max-h-[200px]">
           <PieChart>
             <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
             <Pie data={chartData} dataKey="amount" nameKey="type" innerRadius={60} />
@@ -91,7 +91,7 @@ export function TransactionsPieChart({
             value={typePercentage[TransactionType.OUTCOME]}
           />
           <PercentageItem
-            icon={<PiggyBankIcon size={16} />}
+            icon={<PiggyBankIcon size={16} className="text-white" />}
             title="Investido"
             value={typePercentage[TransactionType.INVESTMENT]}
           />
