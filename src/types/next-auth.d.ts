@@ -7,8 +7,21 @@ declare module 'next-auth' {
       name?: string | null
       email?: string | null
       image?: string | null
-      subscriptionPlan?: string | null
+      subscription?: string | null
       stripeCustomerId?: string | null
     }
+  }
+
+  interface User {
+    id: string
+    name?: string | null
+    email?: string | null
+    image?: string | null
+    subscription?: string | null
+    stripeCustomerId?: string | null
+  }
+
+  interface JWT {
+    id: string
   }
 }
