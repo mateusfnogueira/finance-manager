@@ -5,6 +5,7 @@ import { authOptions } from '@/lib/auth'
 import { CheckIcon, XIcon } from 'lucide-react'
 import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
+import { AdquirePlanButton } from './_components/adquire-plan-button'
 
 export default async function SubscriptionPage() {
   const session = await getServerSession(authOptions)
@@ -12,7 +13,7 @@ export default async function SubscriptionPage() {
     redirect('/login')
   }
   const currentMonthTransactions = await getCurrentMonthTransactions()
-  const hasPremiumPlan = session.user.subscriptionPlan === 'premium'
+  const hasPremiumPlan = session.user.subscription === 'PREMIUM'
 
   return (
     <div className="space-y-6">
@@ -62,6 +63,7 @@ export default async function SubscriptionPage() {
               <CheckIcon className="text-primary" />
               <p>Relatórios de IA</p>
             </div>
+            <AdquirePlanButton />
           </CardContent>
         </Card>
       </div>

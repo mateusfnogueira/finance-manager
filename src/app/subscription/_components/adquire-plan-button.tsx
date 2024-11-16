@@ -1,14 +1,30 @@
 'use client'
 
+import { createStripeCheckout } from '@/actions/checkout/create-stripe-checkout'
 import { Button } from '@/components/ui/button'
+import { loadStripe } from '@stripe/stripe-js'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 
 export function AdquirePlanButton() {
   const user = useSession().data?.user
-  const hasPremiumPlan = user?.subscriptionPlan === 'premium'
+  const hasPremiumPlan = user?.subscription === 'PREMIUM'
 
-  const handleAcquirePlanClick = () => {}
+  const handleAcquirePlanClick = async () => {
+    const { sessionId } = await createStripeCheckout()
+
+    if (!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY) {
+      throw new Error('Stripe publishable key not set')
+    }
+
+    const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
+
+    if (!stripe) {
+      throw new Error('Stripe not loaded')
+    }
+
+    await stripe.redirectToCheckout({ sessionId })
+  }
 
   if (hasPremiumPlan) {
     return (
