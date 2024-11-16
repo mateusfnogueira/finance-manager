@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky"
+    "prepare": "husky",
+    "prisma:migrate": "prisma migrate dev"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.3",
@@ -21,6 +22,7 @@
     "@radix-ui/react-scroll-area": "^1.2.0",
     "@radix-ui/react-select": "^2.1.2",
     "@radix-ui/react-slot": "^1.1.0",
+    "@stripe/stripe-js": "^4.10.0",
     "@svgr/webpack": "^8.1.0",
     "@tanstack/react-table": "^8.20.5",
     "autoprefixer": "^10.4.20",

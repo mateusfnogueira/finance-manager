@@ -23,18 +23,19 @@ model Transaction {
 }
 
 model User {
-  id            String          @id @default(cuid())
-  name          String?
-  email         String          @unique
-  emailVerified DateTime?
-  image         String?
-  subscription  String?         @default("FREE")
-  accounts      Account[]
-  sessions      Session[]
-  Authenticator Authenticator[]
-  transactions  Transaction[]
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
+  id               String          @id @default(cuid())
+  name             String?
+  email            String          @unique
+  emailVerified    DateTime?
+  image            String?
+  subscription     String?         @default("FREE")
+  stripeCustomerId String?
+  accounts         Account[]
+  sessions         Session[]
+  Authenticator    Authenticator[]
+  transactions     Transaction[]
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
 }
 
 model Account {
