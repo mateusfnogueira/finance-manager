@@ -26,7 +26,7 @@ export async function createStripeCheckout() {
     payment_method_types: ['card'],
     mode: 'subscription',
     success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
-    cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
+    cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/subscription`,
     currency: 'brl',
     subscription_data: {
       metadata: {
