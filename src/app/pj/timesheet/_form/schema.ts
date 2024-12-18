@@ -5,11 +5,11 @@ export const formSchema = z.object({
     .string()
     .trim()
     .min(1, { message: 'O mês é obrigatório.' }),
-  year: z.number({ required_error: 'O ano é obrigatório.' }),
-  hourPerDay: z.number({
+  year: z.string({ required_error: 'O ano é obrigatório.' }),
+  hoursPerDay: z.string({
     required_error: 'As horas por dia são obrigatórias.'
   }),
-  daysPerWeek: z.number({
+  daysPerWeek: z.string({
     required_error: 'Os dias por semana são obrigatórios.'
   })
 })
