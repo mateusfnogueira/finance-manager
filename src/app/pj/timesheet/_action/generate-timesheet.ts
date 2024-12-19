@@ -39,6 +39,21 @@ export async function generateTimesheet({
     'Saturday'
   ]
 
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ]
+
   const workbook = new ExcelJS.Workbook()
   const worksheet = workbook.addWorksheet('Timesheet')
 
@@ -63,16 +78,52 @@ export async function generateTimesheet({
   }
 
   // Add month and year
-  worksheet.getRow(5).getCell('A').value = 'Month:'
-  worksheet.getRow(5).getCell('B').value = month
-  worksheet.getRow(6).getCell('A').value = 'Year:'
+  worksheet.getRow(5).getCell('A').value = 'Month'
+  worksheet.getRow(5).getCell('B').value = months[month - 1]
+  worksheet.getRow(6).getCell('A').value = 'Year'
   worksheet.getRow(6).getCell('B').value = year
 
   // Add headers
   worksheet.columns = [
-    { header: 'Day', key: 'day', width: 10, font: { bold: true } },
-    { header: 'Worked', key: 'worked', width: 10 },
-    { header: 'Number of hours', key: 'hours', width: 15 }
+    {
+      header: 'Day',
+      key: 'day',
+      width: 10,
+      font: { bold: true },
+      style: {
+        alignment: {
+          wrapText: true,
+          vertical: 'middle',
+          horizontal: 'center'
+        }
+      }
+    },
+    {
+      header: 'Worked',
+      key: 'worked',
+      width: 10,
+      font: { bold: true },
+      style: {
+        alignment: {
+          wrapText: true,
+          vertical: 'middle',
+          horizontal: 'center'
+        }
+      }
+    },
+    {
+      header: 'Number of hours',
+      key: 'hours',
+      width: 15,
+      font: { bold: true },
+      style: {
+        alignment: {
+          wrapText: true,
+          vertical: 'middle',
+          horizontal: 'center'
+        }
+      }
+    }
   ]
 
   //remove header
@@ -121,6 +172,24 @@ export async function generateTimesheet({
     }
   }
 
+  //Add deliveries
+  //Title
+  worksheet.mergeCells('E8:H8')
+  worksheet.getRow(8).getCell('E').value =
+    'Activities & Accomplishments'
+  worksheet.getRow(8).getCell('E').style = {
+    font: { size: 12, bold: true },
+    alignment: { horizontal: 'left' }
+  }
+  //Add Table
+  worksheet.getRow(10).getCell('E').value = 'Item'
+  worksheet.getRow(11).getCell('E').value = '1'
+  worksheet.getRow(12).getCell('E').value = '2'
+  worksheet.getRow(13).getCell('E').value = '3'
+  worksheet.getRow(14).getCell('E').value = '4'
+  worksheet.getRow(15).getCell('E').value = '5'
+  worksheet.getRow(16).getCell('E').value = '6'
+
   // Add total hours row
   worksheet.addRow({})
   worksheet.addRow({
@@ -136,11 +205,19 @@ export async function generateTimesheet({
       return
     }
     row.eachCell({ includeEmpty: true }, (cell, colNumber) => {
-      cell.border = {
-        top: { style: 'thin' },
-        left: { style: 'thin' },
-        bottom: { style: 'thin' },
-        right: { style: 'thin' }
+      if (colNumber === 4) {
+        // Column D
+        cell.border = {
+          left: { style: 'thin' },
+          right: { style: 'thin' }
+        }
+      } else {
+        cell.border = {
+          top: { style: 'thin' },
+          left: { style: 'thin' },
+          bottom: { style: 'thin' },
+          right: { style: 'thin' }
+        }
       }
     })
   })

@@ -43,7 +43,7 @@ export default function TimesheetPage() {
     const deliveries = ['one dmu', 'inicio do projeto', 'eccomerce']
 
     await generateTimesheet({
-      name: 'Mateus',
+      name: 'Mateus Franco Nogueira',
       month: Number(month),
       year: Number(year),
       hoursPerDay: Number(hoursPerDay),
