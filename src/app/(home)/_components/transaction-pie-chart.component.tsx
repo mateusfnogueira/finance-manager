@@ -11,7 +11,11 @@ import {
 import { TransactionType } from '@prisma/client'
 import { Pie, PieChart } from 'recharts'
 import { PercentageItem } from './percentage-item.component'
-import { PiggyBankIcon, TrendingDownIcon, TrendingUpIcon } from 'lucide-react'
+import {
+  PiggyBankIcon,
+  TrendingDownIcon,
+  TrendingUpIcon
+} from 'lucide-react'
 
 const chartConfig = {
   [TransactionType.INVESTMENT]: {
@@ -69,24 +73,48 @@ export function TransactionsPieChart({
       fill: '#b325b3'
     }
   ]
+
+  if (
+    allIncomes === 0 &&
+    allOutcomes === 0 &&
+    allInvestments === 0 &&
+    allTransfers === 0
+  )
+    return null
+
   return (
     <Card className="flex p-4">
-      <CardContent className="flex w-max min-w-[350px] pb-0">
-        <ChartContainer config={chartConfig} className="mx-auto aspect-square max-h-[200px]">
+      <CardContent className="flex w-max min-w-[300px] pb-0">
+        <ChartContainer
+          config={chartConfig}
+          className="mx-auto aspect-square max-h-[200px]"
+        >
           <PieChart>
-            <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
-            <Pie data={chartData} dataKey="amount" nameKey="type" innerRadius={60} />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
+            />
+            <Pie
+              data={chartData}
+              dataKey="amount"
+              nameKey="type"
+              innerRadius={60}
+            />
           </PieChart>
         </ChartContainer>
 
         <div className="space-y-3">
           <PercentageItem
-            icon={<TrendingUpIcon size={16} className="text-primary" />}
+            icon={
+              <TrendingUpIcon size={16} className="text-primary" />
+            }
             title="Receita"
             value={typePercentage[TransactionType.INCOME]}
           />
           <PercentageItem
-            icon={<TrendingDownIcon size={16} className="text-red-500" />}
+            icon={
+              <TrendingDownIcon size={16} className="text-red-500" />
+            }
             title="Despesas"
             value={typePercentage[TransactionType.OUTCOME]}
           />

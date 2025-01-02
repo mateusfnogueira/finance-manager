@@ -16,24 +16,35 @@ export default async function SubscriptionPage() {
   const hasPremiumPlan = session.user.subscription === 'PREMIUM'
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 p-4">
       <h1 className="text-2xl font-semibold">Subscription</h1>
-      <p>{hasPremiumPlan ? 'You have a premium subscription.' : 'You have a free subscription.'}</p>
+      <p>
+        {hasPremiumPlan
+          ? 'You have a premium subscription.'
+          : 'You have a free subscription.'}
+      </p>
 
-      <div className="flex gap-6">
-        <Card className="w-[450px]">
+      <div className="flex flex-col items-center gap-6 md:flex-row md:items-start">
+        <Card className="w-[250px] md:w-[450px]">
           <CardHeader className="border-b border-solid py-8">
-            <h2 className="text-center text-2xl font-semibold">Free Plan</h2>
+            <h2 className="text-center text-2xl font-semibold">
+              Free Plan
+            </h2>
             <div className="flex items-center justify-center gap-3">
               <span className="text-4xl">R$</span>
               <span className="text-6xl">0</span>
-              <span className="text-2xl text-muted-foreground">/mês</span>
+              <span className="text-2xl text-muted-foreground">
+                /mês
+              </span>
             </div>
           </CardHeader>
           <CardContent className="space-y-6 py-8">
             <div className="flex items-center gap-2">
               <CheckIcon className="text-primary" />
-              <p>Apenas 10 transações por mês ({currentMonthTransactions}/10)</p>
+              <p>
+                Apenas 10 transações por mês (
+                {currentMonthTransactions}/10)
+              </p>
             </div>
             <div className="flex items-center gap-2">
               <XIcon />
@@ -42,16 +53,22 @@ export default async function SubscriptionPage() {
           </CardContent>
         </Card>
 
-        <Card className="w-[450px]">
+        <Card className="w-[250px] md:w-[450px]">
           <CardHeader className="relative border-b border-solid py-8">
             {hasPremiumPlan && (
-              <Badge className="absolute left-4 top-12 bg-primary/10 text-primary">Ativo</Badge>
+              <Badge className="absolute left-4 top-12 bg-primary/10 text-primary">
+                Ativo
+              </Badge>
             )}
-            <h2 className="text-center text-2xl font-semibold">Premium Plan</h2>
+            <h2 className="text-center text-2xl font-semibold">
+              Premium Plan
+            </h2>
             <div className="flex items-center justify-center gap-3">
               <span className="text-4xl">R$</span>
               <span className="text-6xl font-semibold">19</span>
-              <div className="text-2xl text-muted-foreground">/mês</div>
+              <div className="text-2xl text-muted-foreground">
+                /mês
+              </div>
             </div>
           </CardHeader>
           <CardContent className="space-y-6 py-8">

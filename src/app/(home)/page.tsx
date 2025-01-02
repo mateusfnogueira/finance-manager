@@ -18,7 +18,9 @@ interface HomePageProps {
   }
 }
 
-export default async function HomePage({ searchParams }: HomePageProps) {
+export default async function HomePage({
+  searchParams
+}: HomePageProps) {
   const { month } = searchParams
   const session = await getServerSession(authOptions)
   if (!session) {
@@ -32,22 +34,26 @@ export default async function HomePage({ searchParams }: HomePageProps) {
   const dashboard = await getDashboard(month)
 
   return (
-    <div className="flex h-full flex-col space-y-6 overflow-hidden p-6">
+    <div className="flex flex-col space-y-6 p-6">
       <div className="flex justify-between">
         <h1 className="text-2xl font-bold">Dashboard</h1>
         <div className="flex items-center gap-3">
           <TimeSelect />
         </div>
       </div>
-      <div className="grid h-full grid-cols-[2fr,1fr] gap-6 overflow-hidden">
-        <div className="flex flex-col gap-6 overflow-hidden">
+      <div className="grid gap-6 md:grid-cols-[2fr,1fr]">
+        <div className="flex flex-col gap-6">
           <SummaryCards month={month} {...dashboard} />
-          <div className="flex h-full gap-6 overflow-hidden">
+          <div className="flex flex-col gap-6 md:flex-row">
             <TransactionsPieChart {...dashboard} />
-            <ExpensesPerCategory expensesPerCategory={dashboard.totalExpensesPerCategory} />
+            <ExpensesPerCategory
+              expensesPerCategory={dashboard.totalExpensesPerCategory}
+            />
           </div>
         </div>
-        <LastTransactions lastTransactions={dashboard.lastTransaction} />
+        <LastTransactions
+          lastTransactions={dashboard.lastTransaction}
+        />
       </div>
     </div>
   )
