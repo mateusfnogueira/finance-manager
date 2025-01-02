@@ -1,5 +1,6 @@
 import ExcelJS from 'exceljs'
 import { saveAs } from 'file-saver'
+import { sheetColumns } from '../_consts'
 
 interface IGenerateTimesheet {
   name: string
@@ -84,47 +85,7 @@ export async function generateTimesheet({
   worksheet.getRow(6).getCell('B').value = year
 
   // Add headers
-  worksheet.columns = [
-    {
-      header: 'Day',
-      key: 'day',
-      width: 10,
-      font: { bold: true },
-      style: {
-        alignment: {
-          wrapText: true,
-          vertical: 'middle',
-          horizontal: 'center'
-        }
-      }
-    },
-    {
-      header: 'Worked',
-      key: 'worked',
-      width: 10,
-      font: { bold: true },
-      style: {
-        alignment: {
-          wrapText: true,
-          vertical: 'middle',
-          horizontal: 'center'
-        }
-      }
-    },
-    {
-      header: 'Number of hours',
-      key: 'hours',
-      width: 15,
-      font: { bold: true },
-      style: {
-        alignment: {
-          wrapText: true,
-          vertical: 'middle',
-          horizontal: 'center'
-        }
-      }
-    }
-  ]
+  worksheet.columns = sheetColumns
 
   //remove header
   worksheet.getRow(1).values = []
@@ -183,12 +144,10 @@ export async function generateTimesheet({
   }
   //Add Table
   worksheet.getRow(10).getCell('E').value = 'Item'
-  worksheet.getRow(11).getCell('E').value = '1'
-  worksheet.getRow(12).getCell('E').value = '2'
-  worksheet.getRow(13).getCell('E').value = '3'
-  worksheet.getRow(14).getCell('E').value = '4'
-  worksheet.getRow(15).getCell('E').value = '5'
-  worksheet.getRow(16).getCell('E').value = '6'
+  deliveries.forEach((delivery, index) => {
+    worksheet.getRow(10 + index).getCell('E').value = index.toString()
+    worksheet.getRow(10 + index).getCell('F').value = delivery
+  })
 
   // Add total hours row
   worksheet.addRow({})

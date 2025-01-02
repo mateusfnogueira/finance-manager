@@ -71,3 +71,45 @@ export const years = [
     value: 2028
   }
 ]
+
+export const sheetColumns = [
+  {
+    header: 'Day',
+    key: 'day',
+    width: 10,
+    font: { bold: true },
+    style: {
+      alignment: {
+        wrapText: true,
+        vertical: 'middle' as 'middle',
+        horizontal: 'center' as 'center'
+      }
+    }
+  },
+  {
+    header: 'Worked',
+    key: 'worked',
+    width: 10,
+    font: { bold: true },
+    style: {
+      alignment: {
+        wrapText: true,
+        vertical: 'middle' as 'middle',
+        horizontal: 'center' as 'center'
+      }
+    }
+  },
+  {
+    header: 'Number of hours',
+    key: 'hours',
+    width: 15,
+    font: { bold: true },
+    style: {
+      alignment: {
+        wrapText: true,
+        vertical: 'middle' as 'middle',
+        horizontal: 'center' as 'center'
+      }
+    }
+  }
+]
