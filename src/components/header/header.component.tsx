@@ -28,17 +28,23 @@ export function Header() {
           <Logo />
           <h1 className="text-xl font-bold">finance.ai</h1>
         </div>
-        <nav className="flex items-center gap-10">
+        <nav className="hidden items-center gap-10 md:flex">
           <Link
             href="/"
-            className={pathname === '/' ? 'font-bold text-primary' : 'text-muted-foreground'}
+            className={
+              pathname === '/'
+                ? 'font-bold text-primary'
+                : 'text-muted-foreground'
+            }
           >
             Dashboard
           </Link>
           <Link
             href="/transactions"
             className={
-              pathname === '/transactions' ? 'font-bold text-primary' : 'text-muted-foreground'
+              pathname === '/transactions'
+                ? 'font-bold text-primary'
+                : 'text-muted-foreground'
             }
           >
             Transações
@@ -46,7 +52,9 @@ export function Header() {
           <Link
             href="/subscription"
             className={
-              pathname === '/subscription' ? 'font-bold text-primary' : 'text-muted-foreground'
+              pathname === '/subscription'
+                ? 'font-bold text-primary'
+                : 'text-muted-foreground'
             }
           >
             Assinatura
@@ -72,6 +80,45 @@ export function Header() {
             <DropdownMenuItem onSelect={() => {}}>
               <DropdownMenuLabel>Configurações</DropdownMenuLabel>
             </DropdownMenuItem>
+            <div className="md:hidden">
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <Link
+                  href="/"
+                  className={
+                    pathname === '/'
+                      ? 'font-bold text-primary'
+                      : 'text-muted-foreground'
+                  }
+                >
+                  <DropdownMenuLabel>Dashboard</DropdownMenuLabel>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link
+                  href="/transactions"
+                  className={
+                    pathname === '/transactions'
+                      ? 'font-bold text-primary'
+                      : 'text-muted-foreground'
+                  }
+                >
+                  <DropdownMenuLabel>Transações</DropdownMenuLabel>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link
+                  href="/subscription"
+                  className={
+                    pathname === '/subscription'
+                      ? 'font-bold text-primary'
+                      : 'text-muted-foreground'
+                  }
+                >
+                  <DropdownMenuLabel>Assinatura</DropdownMenuLabel>
+                </Link>
+              </DropdownMenuItem>
+            </div>
             <DropdownMenuSeparator />
             <DropdownMenuItem onSelect={() => signOut()}>
               <DropdownMenuLabel>Sair</DropdownMenuLabel>
